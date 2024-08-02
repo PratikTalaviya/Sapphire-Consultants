@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+/* main.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Custom root font sizes */
+:root {
+  font-size: 16px; /* Default font size (base) */
+}
+
+/* Extra small devices (small phones) */
+@screen 2xs {
+  :root {
+    font-size: 12px; /* Adjust font size as needed */
+  }
+}
+
+/* Small devices (phones) */
+@screen xs {
+  :root {
+    font-size: 14px; /* Adjust font size as needed */
+  }
+}
+
+@screen sm {
+  :root {
+    font-size: 16px; /* Adjust font size as needed */
+  }
+}
+
+/* Medium devices (tablets) */
+@screen md {
+  :root {
+    font-size: 18px; /* Adjust font size as needed */
+  }
+}
+
+/* Large devices (desktops) */
+@screen lg {
+  :root {
+    font-size: 20px; /* Adjust font size as needed */
+  }
+}
+
+/* Extra large devices (large desktops) */
+@screen xl {
+  :root {
+    font-size: 22px; /* Adjust font size as needed */
+  }
+}
+
+/* 2X large devices (larger desktops) */
+@screen 2xl {
+  :root {
+    font-size: 24px; /* Adjust font size as needed */
+  }
+}
+
+/* 3X large devices (HD monitors) */
+@screen 3xl {
+  :root {
+    font-size: 26px; /* Adjust font size as needed */
+  }
+}
+
+/* 4X large devices (2K monitors) */
+@screen 4xl {
+  :root {
+    font-size: 28px; /* Adjust font size as needed */
+  }
+}
+
+/* 5X large devices (4K monitors) */
+@screen 5xl {
+  :root {
+    font-size: 32px; /* Adjust font size as needed */
+  }
+}
