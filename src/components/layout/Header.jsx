@@ -64,12 +64,13 @@ function Header() {
         <AnimatePresence>
           {menuOpen && (
             <motion.div
-              initial={{ height: "1rem", width: "2rem", top: "2.5rem", right: "3rem" }}
+              initial={{ height: "1rem", width: "2rem", top: "2.5rem", right: "3rem", opacity: 0.5 }}
               animate={{
                 height: `${diagonalSizePx}px`,
                 width: `${diagonalSizePx}px`,
                 top: `-${diagonalSizePx / 2}px`,
                 left: `-${diagonalSizePx / 3}px`,
+                opacity: 1,
               }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
               exit={{
@@ -78,10 +79,19 @@ function Header() {
                 top: "2rem",
                 right: "2rem",
                 left: `${leftPosition}px`,
-                transition: { duration: 0.45, ease: "easeInOut" },
+                opacity: 0.5,
+                transition: { duration: 0.6, ease: "easeInOut" },
               }}
               className="absolute rounded-full bg-black"
-            ></motion.div>
+            >
+              {/* <div
+                style={{
+                  top: `${diagonalSizePx / 2}px`,
+                  left: `${diagonalSizePx / 3}px`,
+                }}
+                className="h-[5rem] w-[5rem] bg-green-300"
+              ></div> */}
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
