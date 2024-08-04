@@ -1,7 +1,14 @@
 import "./App.css";
+import Button from "./components/common/Button";
+import Header from "./components/layout/Header";
 
 function App() {
-  return <h1 className="text-[4rem] font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Header />
+      {/* <Button /> */}
+    </>
+  );
 }
 
 export default App;
