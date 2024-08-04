@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [leftPosition, setLeftPosition] = useState(getLeftPosition(window.innerWidth)); // Initialize with a calculated value
+  const [leftPosition, setLeftPosition] = useState(getLeftPosition(window.innerWidth));
+  const [diagonalSizePx, setDiagonalSizePx] = useState(calculateDiagonal(window.innerWidth, window.innerHeight) * 2);
 
   function remToPx(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -14,12 +15,20 @@ function Header() {
     return width - offset;
   }
 
+  function calculateDiagonal(width, height) {
+    return Math.sqrt(width * width + height * height);
+  }
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
   useEffect(() => {
     const handleResize = () => {
-      setLeftPosition(getLeftPosition(window.innerWidth));
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      setLeftPosition(getLeftPosition(width));
+      setDiagonalSizePx(calculateDiagonal(width, height) * 2);
     };
 
     window.addEventListener("resize", handleResize);
@@ -29,25 +38,23 @@ function Header() {
   }, []);
 
   useEffect(() => {
-    let timeoutId;
+    // Set or reset the overflow property based on the menuOpen state
+    document.body.style.overflow = menuOpen ? "hidden" : "";
 
+    // If the menu is open, also disable scroll on the document
     if (menuOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
     } else {
-      timeoutId = setTimeout(() => {
-        document.body.style.overflow = "";
-      }, 1000);
+      document.body.style.position = "";
+      document.body.style.width = "";
     }
 
-    // Cleanup function to reset the overflow property and clear the timeout when the component unmounts or menuOpen changes
+    // Cleanup function to reset styles when the component unmounts or menuOpen changes
     return () => {
-      clearTimeout(timeoutId);
-      if (!menuOpen) {
-        // Prevent resetting overflow immediately on component unmount
-        setTimeout(() => {
-          document.body.style.overflow = "";
-        }, 1000);
-      }
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     };
   }, [menuOpen]);
 
@@ -58,20 +65,22 @@ function Header() {
           {menuOpen && (
             <motion.div
               initial={{ height: "1rem", width: "2rem", top: "2.5rem", right: "3rem" }}
-              animate={{ height: "500vh", width: "500vh", top: "-250vh", left: "-25vh" }}
-              // initial={{ bottom: "100vh", y: "-100vh", x: 0 }}
-              // animate={{ bottom: "-100vh", y: "50vh", x: "-25vh" }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              animate={{
+                height: `${diagonalSizePx}px`,
+                width: `${diagonalSizePx}px`,
+                top: `-${diagonalSizePx / 2}px`,
+                left: `-${diagonalSizePx / 3}px`,
+              }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
               exit={{
                 height: "2rem",
                 width: "4rem",
                 top: "2rem",
                 right: "2rem",
                 left: `${leftPosition}px`,
+                transition: { duration: 0.45, ease: "easeInOut" },
               }}
-              // exit={{ bottom: "100vh", y: "-100vh", x: 0 }}
-              // className="absolute w-[500vh] h-[500vh] rounded-full bg-black overflow-hidden"
-              className="absolute h-[2rem] w-[4rem] bg-black rounded-full right-[2rem] top-[2rem]"
+              className="absolute rounded-full bg-black"
             ></motion.div>
           )}
         </AnimatePresence>
